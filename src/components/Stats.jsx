@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import Avatar from "./Avatar.jsx";
-import {changeStats} from "../actions/statsActions.js";
+import {changeStats} from "../features/stats/statsSlice.js";
 
 const Stats = () => {
     const {name} = useSelector((state) => state.user);
@@ -9,12 +9,12 @@ const Stats = () => {
     const dispatch = useDispatch();
 
     const handleLeftButtonClick = (key) => {
-        dispatch(changeStats(key, 1));
+        dispatch(changeStats({statsType: key, sum: 1}));
     }
 
     const handleRightButtonClick = (key, event) => {
         event.preventDefault();
-        dispatch(changeStats(key, -1));
+        dispatch(changeStats({statsType: key, sum: -1}));
     }
 
     return (
